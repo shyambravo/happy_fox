@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Shyam Sundar Assignment",
-  description: "Employee hierarchy management system",
+  title: 'Shyam Sundar Assignment',
+  description: 'Employee hierarchy management system'
 };
 
 export default function RootLayout({ children }) {

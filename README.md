@@ -13,9 +13,10 @@
 No third party libraries used for css or other js utility functions
 
 ## Data Store
-No State management libraries are used. 
 
-Only wrapper methods are used for simulating data stores. 
+No State management libraries are used.
+
+Only getter/setter methods are used for simulating data stores.
 
 Getter and Setter methods for global state can be found under app/client-data-store.
 
@@ -38,4 +39,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 The api data for employees can be modified by editing the file employees.json under app/api
-

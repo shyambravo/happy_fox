@@ -1,4 +1,4 @@
-import "../styles/sidebar.css";
+import '../styles/sidebar.css';
 
 function SideBar(props) {
   const { employeeList, filterEmployees, teamList, selectedTeam, setTeam } = props;
@@ -23,7 +23,9 @@ function SideBar(props) {
         >
           <option value="all">All Teams</option>
           {teamList.map((team) => (
-            <option value={team}>{team}</option>
+            <option value={team} key={team}>
+              {team}
+            </option>
           ))}
         </select>
       </div>

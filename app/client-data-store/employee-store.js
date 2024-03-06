@@ -1,6 +1,6 @@
 // Classical way of persisting data in window global, State management libraries like redux could be used
 
-const STORE_NAME = "employees";
+const STORE_NAME = 'employees';
 
 const setEmployeesToStore = (employeeList) => {
   window[STORE_NAME] = employeeList;

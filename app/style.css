@@ -1,52 +1,75 @@
 :root {
-    --nav-height: 50px;
-    --nav-padding: 10px;
-    --main-margin: 20px;
-    --total-main-margin: 40px;
-    --total-nav-padding: 20px;
+  --nav-height: 50px;
+  --nav-padding: 10px;
+  --main-margin: 20px;
+  --total-main-margin: 40px;
+  --total-nav-padding: 20px;
 }
 
 body {
-    padding: 0;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .nav {
-    padding: var(--nav-padding);
-    width: calc(100% - var(--nav-padding) - var(--nav-padding) - 2px);
-    height: var(--nav-height);
-    display: flex;
-    align-items: center;
-    background-color: #f4f4f4;
-    border: 1px solid #a2a2a2;
-    box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
-    border-radius: 5px;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    font-family: "Montserrat", sans-serif;
+  padding: var(--nav-padding);
+  width: calc(100% - var(--nav-padding) - var(--nav-padding) - 2px);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  background-color: #f4f4f4;
+  border: 1px solid #a2a2a2;
+  box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .nav h3 {
-    text-transform: uppercase;
-    margin: 0;
-    color: #34495e;
+  text-transform: uppercase;
+  margin: 0;
+  color: #34495e;
 }
 
 .main {
-    width: calc(100% - 40px);
-    margin: var(--main-margin);
-    display: flex;
-    justify-content: center;
+  width: calc(100% - 40px);
+  margin: var(--main-margin);
+  display: flex;
+  justify-content: center;
 }
 
 .container {
-    width: 100%;
-    height: calc(100vh - var(--nav-height) - var(--total-main-margin) - var(--total-nav-padding));
-    background-color: #edebeb;
+  width: 100%;
+  height: calc(100vh - var(--nav-height) - var(--total-main-margin) - var(--total-nav-padding));
+  background-color: #edebeb;
+  display: flex;
 }
 
 .loader {
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.show-tree-loader {
+  visibility: visible;
+}
+
+.hide-tree-loader {
+  visibility: hidden;
+}
+
+.content {
+  width: 80%;
+  height: 100%;
+  text-align: center;
+  overflow-x: auto;
+}
+
+.content h3 {
+  color: '#303056';
+  font-size: 30px;
 }

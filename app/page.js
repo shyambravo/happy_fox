@@ -1,22 +1,21 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import NavBar from "./components/NavBar";
-import SideBar from "./components/SideBar";
-import "./style.css";
-import { getEmployeeListApi } from "./api";
-import {
-  getEmployeesFromStore,
-  setEmployeesToStore,
-} from "./client-data-store/employee-store";
+import { useEffect, useState } from 'react';
+import NavBar from './components/NavBar';
+import SideBar from './components/SideBar';
+import './style.css';
+import { getEmployeeListApi, updateEmployeeListApi } from './api';
+import { getEmployeesFromStore, setEmployeesToStore } from './client-data-store/employee-store';
+import { TreeContainer } from './components/TreeContainer';
 
 export default function Home() {
-  const [isLoading, setLoader] = useState(true);
+  const [isPageLoading, setPageLoader] = useState(true);
+  const [isTreeLoading, setTreeLoader] = useState(false);
   const [employeeList, setEmployeeList] = useState([]);
   const [teamList, setTeamList] = useState([]);
-  const [selectedTeam, setTeam] = useState("all");
+  const [selectedTeam, setTeam] = useState('all');
 
-  const filterEmployees = (searchKeyWord = "") => {
+  const filterEmployees = (searchKeyWord = '') => {
     searchKeyWord = searchKeyWord.toLowerCase();
     let employeeListCopy = JSON.parse(JSON.stringify(getEmployeesFromStore()));
 
@@ -35,7 +34,7 @@ export default function Home() {
         flag = true;
       }
 
-      if (selectedTeam !== "all") {
+      if (selectedTeam !== 'all') {
         if (!employee.team.includes(selectedTeam)) {
           flag = false;
         }
@@ -45,6 +44,34 @@ export default function Home() {
     });
 
     setEmployeeList(employeeListCopy);
+  };
+
+  const editManager = async (personID, managerID) => {
+    if (isTreeLoading) {
+      return;
+    }
+
+    setTreeLoader(true);
+
+    const employeeListCopy = JSON.parse(JSON.stringify(getEmployeesFromStore()));
+    const personToBeEdited = employeeListCopy.find((employee) => employee.id === personID);
+    const currentManagerID = personToBeEdited.manager;
+
+    employeeListCopy.forEach((employee) => {
+      if (employee.manager === personID) {
+        employee.manager = currentManagerID;
+      }
+    });
+
+    personToBeEdited.manager = managerID;
+
+    const result = await updateEmployeeListApi(employeeListCopy);
+    setTreeLoader(false);
+
+    if (result) {
+      setEmployeesToStore(employeeListCopy);
+      filterEmployees();
+    }
   };
 
   const fetchData = async () => {
@@ -61,17 +88,17 @@ export default function Home() {
       setEmployeeList(data);
     }
 
-    setLoader(false);
+    setPageLoader(false);
   };
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isPageLoading) {
       filterEmployees();
     }
   }, [selectedTeam]);
 
   useEffect(() => {
-    if (isLoading) {
+    if (isPageLoading) {
       fetchData();
     }
   }, []);
@@ -81,7 +108,7 @@ export default function Home() {
       <NavBar />
       <main className="main">
         <div className="container">
-          {isLoading ? (
+          {isPageLoading ? (
             <div className="loader">Loading...</div>
           ) : (
             <SideBar
@@ -91,6 +118,16 @@ export default function Home() {
               selectedTeam={selectedTeam}
               setTeam={setTeam}
             />
+          )}
+          {!isPageLoading && (
+            <div className="content">
+              <h3>Team Hierarchy</h3>
+              <img
+                src="line_loader.svg"
+                className={isTreeLoading ? 'show-tree-loader' : 'hide-tree-loader'}
+              />
+              <TreeContainer employeeList={employeeList} editManager={editManager} />
+            </div>
           )}
         </div>
       </main>

@@ -1,0 +1,134 @@
+.tree,
+.tree ul,
+.tree li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.tree {
+  margin: 0 auto auto;
+  text-align: center;
+}
+
+.tree,
+.tree ul {
+  display: table;
+}
+
+.tree ul {
+  width: 100%;
+}
+
+.tree li {
+  display: table-cell;
+  padding: 0.5em 0;
+  vertical-align: top;
+}
+
+.tree li:before {
+  outline: solid 1px #666;
+  content: '';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tree li:first-child:before {
+  left: 50%;
+}
+
+.tree li:last-child:before {
+  right: 50%;
+}
+
+.tree code,
+.tree span {
+  border: solid 0.1em #666;
+  border-radius: 0.2em;
+  display: inline-block;
+  margin: 0 0.2em 0.5em;
+  padding: 0.2em 0.5em;
+  position: relative;
+}
+
+.tree ul:before,
+.tree code:before,
+.tree span:before {
+  outline: solid 1px #666;
+  content: '';
+  height: 0.5em;
+  left: 50%;
+  position: absolute;
+}
+
+.tree ul:before {
+  top: -0.5em;
+}
+
+.tree code:before,
+.tree span:before {
+  top: -0.55em;
+}
+
+.tree > li {
+  margin-top: 0;
+}
+
+.tree > li:before,
+.tree > li:after,
+.tree > li > code:before,
+.tree > li > span:before {
+  outline: none;
+}
+
+.tree__card {
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 5px;
+  width: 300px;
+  cursor: pointer;
+}
+
+.tree__card-active {
+  box-shadow: 0 8px 16px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tree__card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-name-container {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.card-name-container img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border: 1px solid #303056;
+  margin-right: 10px;
+}
+
+.card-name-container h4 {
+  margin: 5px 0px;
+}
+
+.card-content {
+  margin-top: 20px;
+  text-align: left;
+  border-top: 1px solid rgb(220, 215, 215);
+  padding: 5px 0;
+}
+
+.card-content h5 {
+  margin: 5px;
+}
+
+.card-content h6 {
+  margin: 5px;
+}
