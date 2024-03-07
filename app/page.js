@@ -15,23 +15,24 @@ export default function Home() {
   const [employeeList, setEmployeeList] = useState([]);
   const [teamList, setTeamList] = useState([]);
   const [selectedTeam, setTeam] = useState('all');
+  const [searchKeyWord, setSearchKeyWord] = useState("")
 
-  const filterEmployees = (searchKeyWord = '') => {
-    searchKeyWord = searchKeyWord.toLowerCase();
+  const filterEmployees = () => {
+    const searchString = searchKeyWord.toLowerCase();
     let employeeListCopy = JSON.parse(JSON.stringify(getEmployeesFromStore()));
 
     employeeListCopy = employeeListCopy.filter((employee) => {
       let flag = false;
 
-      if (employee.name.toLowerCase().includes(searchKeyWord)) {
+      if (employee.name.toLowerCase().includes(searchString)) {
         flag = true;
       }
 
-      if (employee.designation.toLowerCase().includes(searchKeyWord)) {
+      if (employee.designation.toLowerCase().includes(searchString)) {
         flag = true;
       }
 
-      if (employee.team.toLowerCase().includes(searchKeyWord)) {
+      if (employee.team.toLowerCase().includes(searchString)) {
         flag = true;
       }
 
@@ -96,7 +97,7 @@ export default function Home() {
     if (!isPageLoading) {
       filterEmployees();
     }
-  }, [selectedTeam]);
+  }, [selectedTeam, searchKeyWord]);
 
   useEffect(() => {
     if (isPageLoading) {
@@ -114,9 +115,10 @@ export default function Home() {
           ) : (
             <SideBar
               employeeList={employeeList}
-              filterEmployees={filterEmployees}
               teamList={teamList}
               selectedTeam={selectedTeam}
+              searchKeyWord={searchKeyWord}
+              setSearchKeyWord={setSearchKeyWord}
               setTeam={setTeam}
             />
           )}

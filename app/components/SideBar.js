@@ -3,7 +3,7 @@ import '../styles/sidebar.css';
 import { ListComponent } from './ListComponent';
 
 function SideBar(props) {
-  const { employeeList, filterEmployees, teamList, selectedTeam, setTeam } = props;
+  const { employeeList, searchKeyWord, setSearchKeyWord, teamList, selectedTeam, setTeam } = props;
 
   return (
     <div className="side-bar" data-testid={TEST_IDS.SIDE_BAR}>
@@ -11,8 +11,9 @@ function SideBar(props) {
         <input
           type="text"
           placeholder="Search"
+          value={searchKeyWord}
           onChange={(event) => {
-            filterEmployees(event.target.value);
+            setSearchKeyWord(event.target.value);
           }}
         />
         <button type="button">
