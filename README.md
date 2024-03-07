@@ -1,6 +1,7 @@
 ## Tech stack used
 
 - Next.js
+- Jest
 
 ## Api
 
@@ -19,6 +20,12 @@ No State management libraries are used.
 Only getter/setter methods are used for simulating data stores.
 
 Getter and Setter methods for global state can be found under app/client-data-store.
+
+## Testing
+
+```bash
+npm run test
+```
 
 ## Running the app in dev mode
 
