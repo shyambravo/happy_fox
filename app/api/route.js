@@ -1,27 +1,40 @@
 import { cookies } from 'next/headers';
-import { readFileSync, writeFileSync } from 'fs';
 import { NextResponse } from 'next/server';
 
+let employeesData = [
+  { "name": "Shalin Jain", "id": "1", "designation": "CEO", "team": "Core", "manager": null },
+  {
+    "name": "Suresh Kumar",
+    "id": "2",
+    "designation": "Manager",
+    "team": "Help Desk",
+    "manager": "1"
+  },
+  { "name": "Pooja", "id": "3", "designation": "HR", "team": "Core", "manager": "1" },
+  { "name": "Shyam", "id": "4", "designation": "Developer", "team": "Help Desk", "manager": "2" },
+  {
+    "name": "Some random guy 1",
+    "id": "5",
+    "designation": "Developer",
+    "team": "Help Desk",
+    "manager": "2"
+  },
+  {
+    "name": "Some random guy 2",
+    "id": "6",
+    "designation": "Developer",
+    "team": "Help Desk",
+    "manager": "3"
+  },
+  { "name": "Some random guy 3", "id": "7", "designation": "HR", "team": "Core", "manager": "3" }
+];
+
 const readEmployeesFile = () => {
-  let data = [];
-
-  try {
-    data = readFileSync(process.cwd() + '/app/api/employees.json', 'utf8');
-  } catch (err) {
-    return false;
-  }
-
-  return JSON.parse(data);
+  return employeesData;
 };
 
 const writeLatestData = (data) => {
-  try {
-    writeFileSync(process.cwd() + '/app/api/employees.json', JSON.stringify(data));
-  } catch (err) {
-    console.log(err);
-    return false;
-  }
-
+  employeesData = data;
   return true;
 };
 
