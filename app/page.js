@@ -7,6 +7,7 @@ import './style.css';
 import { getEmployeeListApi, updateEmployeeListApi } from './api';
 import { getEmployeesFromStore, setEmployeesToStore } from './client-data-store/employee-store';
 import { TreeContainer } from './components/TreeContainer';
+import { TEST_IDS } from './enums/test-id';
 
 export default function Home() {
   const [isPageLoading, setPageLoader] = useState(true);
@@ -64,8 +65,8 @@ export default function Home() {
     });
 
     personToBeEdited.manager = managerID;
-
     const result = await updateEmployeeListApi(employeeListCopy);
+
     setTreeLoader(false);
 
     if (result) {
@@ -120,7 +121,7 @@ export default function Home() {
             />
           )}
           {!isPageLoading && (
-            <div className="content">
+            <div className="content" data-testid={TEST_IDS.MAIN_CONTENT}>
               <h3>Team Hierarchy</h3>
               <img
                 src="line_loader.svg"

@@ -1,3 +1,4 @@
+import { TEST_IDS } from '../enums/test-id.js';
 import { useRef } from 'react';
 
 const Card = (props) => {
@@ -41,6 +42,7 @@ const Card = (props) => {
       onDragLeave={onDragLeave}
       onDrop={onDrop}
       ref={ref}
+      data-testid={TEST_IDS.CARD}
     >
       <div className="card-name-container">
         <img src={person.img ? person.img : 'avatar_black.png'} alt={person.name} />

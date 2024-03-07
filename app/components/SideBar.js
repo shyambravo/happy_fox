@@ -1,10 +1,12 @@
+import { TEST_IDS } from '../enums/test-id.js';
 import '../styles/sidebar.css';
+import { ListComponent } from './ListComponent';
 
 function SideBar(props) {
   const { employeeList, filterEmployees, teamList, selectedTeam, setTeam } = props;
 
   return (
-    <div className="side-bar">
+    <div className="side-bar" data-testid={TEST_IDS.SIDE_BAR}>
       <div className="side-bar__search">
         <input
           type="text"
@@ -19,8 +21,7 @@ function SideBar(props) {
         <select
           title="Search teams"
           onChange={(event) => setTeam(event.target.value)}
-          value={selectedTeam}
-        >
+          value={selectedTeam}>
           <option value="all">All Teams</option>
           {teamList.map((team) => (
             <option value={team} key={team}>
@@ -32,13 +33,7 @@ function SideBar(props) {
       <div className="side-bar__list">
         <ul className="list">
           {employeeList.map((employee) => (
-            <li className="list-item" key={employee.id}>
-              <img src="avatar.png" alt="profile" className="list-image" />
-              <div className="list-description">
-                <h3>{employee.name}</h3>
-                <p>{employee.designation}</p>
-              </div>
-            </li>
+            <ListComponent person={employee} key={employee.id} />
           ))}
         </ul>
       </div>
