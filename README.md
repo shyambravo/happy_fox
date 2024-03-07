@@ -6,7 +6,7 @@
 ## Api
 
 - Next.js route handlers are used for backend api endpoints.
-- Refer app/api/route.js
+- Refer app/api/route.js (For modifying input data)
 - Data is persisted in memory on server side.
 
 ## Thrid party libraries used
