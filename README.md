@@ -6,7 +6,7 @@
 
 - Next.js route handlers are used for backend api endpoints.
 - Refer employees.json under app/api.
-- File system used for storing data in the backend.
+- Data is persisted in memory on server side.
 
 ## Thrid party libraries used
 
